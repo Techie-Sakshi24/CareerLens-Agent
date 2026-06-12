@@ -118,6 +118,4 @@ I'm a fresher actively job hunting, and this is the tool I needed every day duri
 
 Microsoft Agents League Hackathon 2026
 
-Track: Reasoning Agents
-IQ Layer: Foundry IQ
-Submission: June 14, 2026
+Track: Reasoning Agents | IQ Layer: Foundry IQ | Submission: June 14, 2026
