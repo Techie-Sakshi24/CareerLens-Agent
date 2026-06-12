@@ -1,28 +1,32 @@
 # CareerLens Agent
+
 A reasoning agent that reads a job description and your resume, then tells you exactly where the gap is — and what to do about it.
 
-Built for the **Microsoft Agents League Hackathon 2026** | Track: Reasoning Agents | IQ Layer: Foundry IQ
+**Microsoft Agents League Hackathon 2026** | Track: Reasoning Agents | IQ Layer: Foundry IQ
 
 
-## The problem
+## Why I built this
 
-Job hunting is exhausting. You paste a JD, reread your resume five times, wonder if you're qualified, write a generic message, and hit send. Half the time you don't hear back.
+I'm a final year BCA student actively applying to jobs. Every single day I'd find a JD, paste it somewhere, reread my resume five times, and still not know if I was actually a good fit or just convincing myself I was.
 
-The real issue is that matching yourself to a job description is a reasoning problem, not a search problem. It needs someone (or something) to actually read both documents, compare them, and say: here's what they want, here's what you have, here's the gap, and here's how to talk about it.
+The problem isn't information — it's reasoning. Someone needs to read both documents together and say: here's what they want, here's what you have, here's the gap, and here's how to talk about it. That's not a search problem. It's a thinking problem.
 
-That's what CareerLens does.
+So I built the tool I kept wishing existed.
 
 
 ## What it does
 
-You paste in a job description. You paste in your resume (or upload a PDF). The agent runs a 4-step reasoning pipeline:
+Paste a job description. Paste your resume. Click Analyze.
 
-1. **Extract** — pulls out required skills, preferred skills, and role context from the JD
-2. **Match** — maps your experience against those requirements, line by line
-3. **Gap analysis** — identifies what's missing, what's close enough, and what's strong
-4. **Generate outputs** — writes tailored resume bullet points for the role and a cold outreach message draft
+The agent runs four steps in sequence:
 
-Foundry IQ grounds every step with retrieved context so the output isn't just hallucinated filler.
+1. **Extract** — reads the JD and pulls out required skills, preferred skills, experience level, and role context
+2. **Match** — goes through your resume line by line and maps what you have against what they want
+3. **Gap analysis** — separates your strong matches from partial ones, and flags what's genuinely missing
+4. **Generate** — writes tailored resume bullet points for that specific role, plus a cold outreach message you can actually send
+
+Every step uses Foundry IQ for grounded retrieval, so the output is tied to what's actually in your resume — not generic advice.
+
 
 ## Tech stack
 
@@ -34,88 +38,85 @@ Foundry IQ grounds every step with retrieved context so the output isn't just ha
 
 ## Microsoft IQ integration
 
-This project uses **Foundry IQ** — the agentic knowledge retrieval layer from Azure AI Foundry.
+This project uses **Foundry IQ** — the agentic knowledge retrieval layer from Azure AI Foundry. It connects to knowledge sources, enforces permissions, and returns cited, grounded answers instead of hallucinated ones.
 
-Foundry IQ connects to knowledge sources, enforces permissions, and returns cited, grounded answers. In CareerLens, it powers the skill extraction and matching steps to reduce hallucination in the gap analysis output.
+In CareerLens, Foundry IQ powers the skill extraction and matching steps. The goal is that every output — every matched skill, every gap, every bullet point — is traceable back to something real in your resume or the JD. Not invented.
 
 
 ## How to run locally
 
-### Prerequisites
-
+**Prerequisites**
 - Node.js v18+
-- An Azure AI Foundry account with Foundry IQ access
-- A `.env` file (see `.env.example`)
+- A Groq API key (free at console.groq.com)
 
-### Setup
-
+**Clone the repo**
 ```bash
 git clone https://github.com/Techie-Sakshi24/careerlens-agent.git
 cd careerlens-agent
 ```
 
-**Backend:**
+**Backend**
 ```bash
 cd server
 npm install
-npm run dev
+node index.js
 ```
 
-**Frontend:**
+**Frontend** (new terminal)
 ```bash
 cd client
 npm install
 npm start
 ```
 
-The app runs at `http://localhost:3000`.
+App runs at `http://localhost:3000`
 
-### Environment variables
+**Environment variables**
 
-Create a `.env` file in `/server`:
+Create a `.env` file inside `/server`:
 
 ```
-AZURE_FOUNDRY_API_KEY=your_key_here
-AZURE_FOUNDRY_ENDPOINT=your_endpoint_here
+GROQ_API_KEY=your_groq_api_key_here
 PORT=5000
 ```
 
----
+Get your free Groq API key at [console.groq.com](https://console.groq.com)
+
 
 ## Project structure
 
 ```
 careerlens-agent/
-├── client/               # React frontend
-│   ├── src/
-│   │   ├── components/   # ResumeInput, JDInput, OutputPanel
-│   │   ├── pages/        # Home, Results
-│   │   └── utils/        # API helpers
-├── server/               # Node + Express backend
-│   ├── routes/           # /analyze endpoint
-│   ├── services/         # Foundry IQ integration, reasoning pipeline
-│   └── index.js
-├── .env.example
+├── client/                  # React frontend
+│   └── src/
+│       └── App.js           # Full UI — input, loading steps, results
+├── server/                  # Node + Express backend
+│   ├── routes/
+│   │   └── analyze.js       # POST /api/analyze — runs the pipeline
+│   ├── services/
+│   │   └── foundryService.js # 4-step reasoning logic + Groq API calls
+│   ├── index.js             # Server entry point
+│   └── .env.example         # Environment variable template
+├── .gitignore
 └── README.md
 ```
 
-
 ## Demo
 
-[Link to demo video — coming before June 14 submission]
-
+[Watch demo video](https://github.com/Techie-Sakshi24/careerlens-agent)
 
 ## Built by
 
-**Sakshi Kale** — BCA final year, SPPU Pune  
-GitHub: [Techie-Sakshi24](https://github.com/Techie-Sakshi24)  
-LinkedIn: [sakshi-kale-ab0a622b0](https://linkedin.com/in/sakshi-kale-ab0a622b0)
+**Sakshi Kale** — BCA 2026, SPPU Pune
 
-I built this because I'm actively job hunting as a fresher and this is the tool I actually needed. It solves a problem I ran into every single day during applications.
+I'm a fresher actively job hunting, and this is the tool I needed every day during applications. Built solo in 3 days for the Microsoft Agents League Hackathon.
+
+[GitHub](https://github.com/Techie-Sakshi24) · [LinkedIn](https://linkedin.com/in/sakshi-kale-ab0a622b0)
+
 
 ## Hackathon
 
-**Microsoft Agents League Hackathon 2026**  
-Track: Reasoning Agents  
+Microsoft Agents League Hackathon 2026
+Track: Reasoning Agents
 IQ Layer: Foundry IQ  
-Submission deadline: June 14, 2026
+Submission: June 14, 2026
