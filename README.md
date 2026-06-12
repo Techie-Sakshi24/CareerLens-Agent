@@ -3,7 +3,6 @@ A reasoning agent that reads a job description and your resume, then tells you e
 
 Built for the **Microsoft Agents League Hackathon 2026** | Track: Reasoning Agents | IQ Layer: Foundry IQ
 
----
 
 ## The problem
 
@@ -13,7 +12,6 @@ The real issue is that matching yourself to a job description is a reasoning pro
 
 That's what CareerLens does.
 
----
 
 ## What it does
 
@@ -26,8 +24,6 @@ You paste in a job description. You paste in your resume (or upload a PDF). The 
 
 Foundry IQ grounds every step with retrieved context so the output isn't just hallucinated filler.
 
----
-
 ## Tech stack
 
 - **Frontend** — React.js
@@ -35,7 +31,6 @@ Foundry IQ grounds every step with retrieved context so the output isn't just ha
 - **AI layer** — Microsoft Azure AI Foundry + Foundry IQ
 - **Deployment** — Vercel (frontend), Render (backend)
 
----
 
 ## Microsoft IQ integration
 
@@ -43,7 +38,6 @@ This project uses **Foundry IQ** — the agentic knowledge retrieval layer from 
 
 Foundry IQ connects to knowledge sources, enforces permissions, and returns cited, grounded answers. In CareerLens, it powers the skill extraction and matching steps to reduce hallucination in the gap analysis output.
 
----
 
 ## How to run locally
 
@@ -105,13 +99,11 @@ careerlens-agent/
 └── README.md
 ```
 
----
 
 ## Demo
 
 [Link to demo video — coming before June 14 submission]
 
----
 
 ## Built by
 
@@ -120,8 +112,6 @@ GitHub: [Techie-Sakshi24](https://github.com/Techie-Sakshi24)
 LinkedIn: [sakshi-kale-ab0a622b0](https://linkedin.com/in/sakshi-kale-ab0a622b0)
 
 I built this because I'm actively job hunting as a fresher and this is the tool I actually needed. It solves a problem I ran into every single day during applications.
-
----
 
 ## Hackathon
 
