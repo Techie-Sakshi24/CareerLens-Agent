@@ -103,7 +103,7 @@ careerlens-agent/
 
 ## Demo
 
-[Watch demo video](./Careerlens_Hackathon_Project.mp4)
+[Watch demo video](https://youtu.be/PIGVhNrQ1ho)
 
 ## Built by
 
